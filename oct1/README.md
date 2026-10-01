@@ -4,6 +4,8 @@
 
 Let's make our own register! https://cs61.seas.harvard.edu/site/2026/Asm/#Registers
 
+Remember: all elements in a union share the same address in memory
+
 ```c
 #include <stdlib.h>
 #include <stdio.h>
