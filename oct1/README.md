@@ -69,3 +69,23 @@ The most important things are understanding:
 - `%rsp`
 - `pop`/`push`
 - `lea`
+- `%rax`
+- `leave; retq` - or `movq %rbp, %rsp; popq %rbp; retq`
+
+```asm
+0000000000401490 <_Z6functiPc>:
+  401490:	55                   	push   %rbp
+  401491:	31 d2                	xor    %edx,%edx
+  401493:	48 89 e5             	mov    %rsp,%rbp
+  401496:	48 83 ec 10          	sub    $0x10,%rsp
+  40149a:	48 8d 75 f8          	lea    -0x8(%rbp),%rsi
+  40149e:	e8 fd fc ff ff       	call   4011a0 <strtol@plt>
+  4014a3:	48 3d e2 a1 00 00    	cmp    $0xaaff,%rax
+  4014a9:	75 05                	jne    4014b0 <_Z6functiPc+0x20>
+  4014ab:	c9                   	leave
+  4014ac:	c3                   	ret
+  4014ad:	0f 1f 00             	nopl   (%rax)
+  4014b0:	e8 8b 09 00 00       	call   401e40 <_Z12functiontwoov>
+  4014b5:	66 66 2e 0f 1f 84 00 	data16 cs nopw 0x0(%rax,%rax,1)
+  4014bc:	00 00 00 00 
+```
