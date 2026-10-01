@@ -1,11 +1,12 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <stdint.h>
 
 union Register {
     uint16_t reg; // %ax
     struct {
-        uint8_t l; // Low bytes %al
-        uint8_t h; // High byte %ah
+        uint8_t high; // High byte %ah
+        uint8_t low; // Low bytes %al
     };
 };
 
@@ -19,8 +20,8 @@ int main()
 
     // OR
 
-    cs61.h = 0xcb; // 8 bytes - decimal 203
-    cs61.l = 0x61; // 8 bytes - decimal 97
+    cs61.high = 0xcb; // 8 bytes - decimal 203
+    cs61.low = 0x61; // 8 bytes - decimal 97
 
-    printf("High: %d\nlow: %d\n", cs61.h, cs61.l);
+    printf("High: %d\nlow: %d\n", cs61.high, cs61.low);
 }
